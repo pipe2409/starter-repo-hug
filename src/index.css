@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Gamified color palette for kids */
+    --background: 250 100% 98%;
+    --foreground: 260 30% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 260 30% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 260 30% 20%;
+
+    /* Purple primary - magical and educational */
+    --primary: 265 85% 58%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 265 85% 75%;
+
+    /* Golden secondary - coins and rewards */
+    --secondary: 45 100% 55%;
+    --secondary-foreground: 45 100% 15%;
+
+    /* Muted backgrounds */
+    --muted: 250 40% 95%;
+    --muted-foreground: 260 15% 45%;
+
+    /* Green accent - success and achievements */
+    --accent: 145 70% 55%;
+    --accent-foreground: 145 70% 10%;
+
+    /* Red destructive */
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders and inputs */
+    --border: 250 30% 88%;
+    --input: 250 30% 92%;
+    --ring: 265 85% 58%;
+
+    --radius: 1rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(265 85% 58%), hsl(280 85% 65%));
+    --gradient-reward: linear-gradient(135deg, hsl(45 100% 55%), hsl(35 100% 50%));
+    --gradient-success: linear-gradient(135deg, hsl(145 70% 55%), hsl(160 70% 50%));
+    --gradient-background: linear-gradient(180deg, hsl(250 100% 98%), hsl(265 60% 96%));
+
+    /* Shadows */
+    --shadow-card: 0 4px 20px hsl(265 85% 58% / 0.12);
+    --shadow-glow: 0 0 30px hsl(265 85% 75% / 0.3);
+    --shadow-coin: 0 4px 15px hsl(45 100% 55% / 0.4);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 260 40% 8%;
+    --foreground: 250 100% 98%;
+
+    --card: 260 30% 12%;
+    --card-foreground: 250 100% 98%;
+
+    --popover: 260 30% 12%;
+    --popover-foreground: 250 100% 98%;
+
+    --primary: 265 85% 65%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 265 85% 75%;
+
+    --secondary: 45 100% 60%;
+    --secondary-foreground: 45 100% 10%;
+
+    --muted: 260 30% 18%;
+    --muted-foreground: 250 20% 65%;
+
+    --accent: 145 70% 60%;
+    --accent-foreground: 145 70% 5%;
+
+    --destructive: 0 85% 65%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 260 30% 20%;
+    --input: 260 30% 18%;
+    --ring: 265 85% 65%;
+
+    --gradient-background: linear-gradient(180deg, hsl(260 40% 8%), hsl(265 45% 12%));
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
