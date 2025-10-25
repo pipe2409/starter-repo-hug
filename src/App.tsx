@@ -15,6 +15,7 @@ import Profile from "./pages/Profile";
 import Leaderboard from "./pages/Leaderboard";
 import DailyMissions from "./pages/DailyMissions";
 import NotFound from "./pages/NotFound";
+import SubscriptionPlans from "./pages/SubscriptionPlans";
 import { Dashboard } from "./components/Dashboard";
 import coinsImage from "@/assets/coins.png";
 
@@ -117,6 +118,7 @@ const App = () => {
                 <main className="flex-1 overflow-auto">
                   <Routes>
                     <Route path="/" element={<HomePage user={user} />} />
+                    <Route path="/plans" element={<SubscriptionPlans />} />
                     <Route path="/lessons" element={<Dashboard user={user} />} />
                     <Route
                       path="/missions"
