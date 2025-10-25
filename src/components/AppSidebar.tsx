@@ -29,8 +29,6 @@ const navItems = [
   { title: "Lecciones", url: "/lessons", icon: BookOpen },
   { title: "Misiones Diarias", url: "/missions", icon: Target },
   { title: "Logros", url: "/achievements", icon: Trophy },
-  { title: "Ranking", url: "/leaderboard", icon: TrendingUp },
-  { title: "Tienda", url: "/store", icon: Store },
   { title: "Mi Perfil", url: "/profile", icon: User },
 ];
 

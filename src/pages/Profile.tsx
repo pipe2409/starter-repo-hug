@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { User } from "@supabase/supabase-js";
 import { Card } from "@/components/ui/card";
@@ -6,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Camera, Save, Sparkles } from "lucide-react";
+import { Camera, Save, Sparkles, Crown } from "lucide-react";
 import mascotImage from "@/assets/mascot-transparent.png";
 
 interface Profile {
@@ -28,6 +29,7 @@ export default function Profile({ user }: { user: User }) {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadProfile();
@@ -228,9 +230,19 @@ export default function Profile({ user }: { user: User }) {
             </Button>
           </>
         ) : (
-          <Button onClick={() => setIsEditing(true)} className="flex-1">
-            Editar Perfil
-          </Button>
+          <>
+            <Button onClick={() => setIsEditing(true)} className="flex-1">
+              Editar Perfil
+            </Button>
+            <Button 
+              onClick={() => navigate("/plans")} 
+              variant="secondary"
+              className="flex-1 bg-gradient-to-r from-secondary to-orange-400 hover:opacity-90"
+            >
+              <Crown className="w-4 h-4 mr-2" />
+              Mejorar Plan
+            </Button>
+          </>
         )}
       </div>
     </div>
