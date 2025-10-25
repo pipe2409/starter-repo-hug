@@ -16,6 +16,7 @@ import Leaderboard from "./pages/Leaderboard";
 import DailyMissions from "./pages/DailyMissions";
 import NotFound from "./pages/NotFound";
 import SubscriptionPlans from "./pages/SubscriptionPlans";
+import Lessons from "./pages/Lessons";
 import { Dashboard } from "./components/Dashboard";
 import coinsImage from "@/assets/coins.png";
 
@@ -119,7 +120,7 @@ const App = () => {
                   <Routes>
                     <Route path="/" element={<HomePage user={user} />} />
                     <Route path="/plans" element={<SubscriptionPlans />} />
-                    <Route path="/lessons" element={<Dashboard user={user} />} />
+                    <Route path="/lessons" element={<Lessons user={user} />} />
                     <Route
                       path="/missions"
                       element={<DailyMissions user={user} />}
