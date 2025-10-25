@@ -47,15 +47,15 @@ export function AppSidebar({ onSignOut, streak }: AppSidebarProps) {
   const isActive = (path: string) => location.pathname === path;
   const getNavCls = ({ isActive }: { isActive: boolean }) =>
     isActive
-      ? "bg-primary text-primary-foreground font-semibold"
-      : "hover:bg-accent hover:text-accent-foreground";
+      ? "bg-sidebar-accent text-sidebar-accent-foreground font-semibold"
+      : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground";
 
   return (
     <Sidebar
       className={`${collapsed ? "w-16" : "w-64"} transition-all font-poppins`}
       collapsible="icon"
     >
-      <div className="p-4 flex items-center justify-center border-b">
+      <div className="p-4 flex items-center justify-center border-b border-sidebar-border">
         <img
           src={mascotImage}
           alt="LuckCash"
@@ -101,10 +101,10 @@ export function AppSidebar({ onSignOut, streak }: AppSidebarProps) {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        <div className="p-4 mt-auto border-t">
+        <div className="p-4 mt-auto border-t border-sidebar-border">
           <button
             onClick={onSignOut}
-            className="flex items-center gap-3 w-full p-2 hover:bg-destructive/10 hover:text-destructive rounded-md transition-colors"
+            className="flex items-center gap-3 w-full p-2 text-sidebar-foreground hover:bg-destructive/10 hover:text-destructive rounded-md transition-colors"
           >
             <LogOut className="w-5 h-5" />
             {!collapsed && <span>Cerrar Sesión</span>}
