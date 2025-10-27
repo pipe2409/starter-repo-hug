@@ -17,6 +17,7 @@ import DailyMissions from "./pages/DailyMissions";
 import NotFound from "./pages/NotFound";
 import SubscriptionPlans from "./pages/SubscriptionPlans";
 import Lessons from "./pages/Lessons";
+import Admin from "./pages/Admin";
 import { Dashboard } from "./components/Dashboard";
 import coinsImage from "@/assets/coins.png";
 
@@ -135,6 +136,7 @@ const App = () => {
                       element={<Dashboard user={user} />}
                     />
                     <Route path="/profile" element={<Profile user={user} />} />
+                    <Route path="/admin" element={<Admin user={user} />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </main>

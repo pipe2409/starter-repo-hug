@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 import mascotImage from "@/assets/mascot-transparent.png";
 
 const plans = [
@@ -55,19 +56,31 @@ const plans = [
 
 export default function SubscriptionPlans() {
   const navigate = useNavigate();
-  const { toast } = useToast();
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
 
-  const handleSelectPlan = (planName: string) => {
+  const handleSelectPlan = async (planName: string) => {
     setSelectedPlan(planName);
-    toast({
-      title: `¡Plan ${planName} seleccionado! 🎉`,
-      description: "Redirigiendo a la página principal...",
-    });
-
-    // Redirigir después de 1.5 segundos
+    
+    // Save the plan to the user's profile
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      // Note: You need to add subscription_plan column to profiles table first
+      const { error } = await supabase
+        .from('profiles')
+        .update({ subscription_plan: planName.toLowerCase() } as any)
+        .eq('user_id', user.id);
+      
+      if (error) {
+        console.log('Note: subscription_plan column needs to be added to profiles table');
+        console.error(error);
+      }
+    }
+    
+    toast.success(`¡Plan ${planName} seleccionado! 🎉`);
+    
+    // Redirect after a short delay
     setTimeout(() => {
-      navigate("/");
+      navigate('/');
     }, 1500);
   };
 

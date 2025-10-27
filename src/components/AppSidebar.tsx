@@ -9,6 +9,7 @@ import {
   Target,
   LogOut,
   Flame,
+  Shield,
 } from "lucide-react";
 import {
   Sidebar,
@@ -30,6 +31,7 @@ const navItems = [
   { title: "Misiones Diarias", url: "/missions", icon: Target },
   { title: "Logros", url: "/achievements", icon: Trophy },
   { title: "Mi Perfil", url: "/profile", icon: User },
+  { title: "Admin", url: "/admin", icon: Shield, adminOnly: true },
 ];
 
 interface AppSidebarProps {
