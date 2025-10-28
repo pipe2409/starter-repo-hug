@@ -16,10 +16,9 @@ import { toast } from "sonner";
 
 interface UserProfile {
   id: string;
-  user_id: string;
   display_name: string | null;
-  total_coins: number;
-  current_streak: number;
+  coins: number;
+  streak: number;
   subscription_plan: string | null;
   created_at: string;
 }
@@ -35,15 +34,34 @@ const Admin = ({ user }: { user: User }) => {
   }, [user]);
 
   const checkAdminRole = async () => {
-    try {
-      // For now, we'll check if there's a special field or just load users
-      // In production, you would check user_roles table
-      setIsAdmin(true);
-      loadUsers();
+    if (!user?.id) {
+      setIsAdmin(false);
       setLoading(false);
+      return;
+    }
+
+    try {
+      const { data, error } = await supabase
+        .rpc('has_role', { _user_id: user.id, _role: 'admin' });
+
+      if (error) {
+        console.error('Error checking admin role:', error);
+        setIsAdmin(false);
+        navigate("/");
+      } else {
+        setIsAdmin(data || false);
+        if (data) {
+          await loadUsers();
+        } else {
+          toast.error("No tienes permisos de administrador");
+          navigate("/");
+        }
+      }
     } catch (error) {
-      console.error("Error checking admin role:", error);
+      console.error('Error in checkAdminRole:', error);
+      setIsAdmin(false);
       navigate("/");
+    } finally {
       setLoading(false);
     }
   };
@@ -60,13 +78,7 @@ const Admin = ({ user }: { user: User }) => {
       return;
     }
 
-    // Map the data to include subscription_plan field
-    const mappedData = (data || []).map(profile => ({
-      ...profile,
-      subscription_plan: (profile as any).subscription_plan || null
-    }));
-
-    setUsers(mappedData as UserProfile[]);
+    setUsers(data || []);
   };
 
   const getPlanBadge = (plan: string | null) => {
@@ -134,8 +146,8 @@ const Admin = ({ user }: { user: User }) => {
                       <TableCell>
                         {getPlanBadge(userProfile.subscription_plan)}
                       </TableCell>
-                      <TableCell>{userProfile.total_coins}</TableCell>
-                      <TableCell>{userProfile.current_streak} días</TableCell>
+                      <TableCell>{userProfile.coins}</TableCell>
+                      <TableCell>{userProfile.streak} días</TableCell>
                       <TableCell>
                         {new Date(userProfile.created_at).toLocaleDateString()}
                       </TableCell>
