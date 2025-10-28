@@ -14,374 +14,69 @@ export type Database = {
   }
   public: {
     Tables: {
-      achievements: {
-        Row: {
-          badge_icon: string
-          coins_reward: number
-          created_at: string
-          description: string
-          id: string
-          requirement_type: string
-          requirement_value: number
-          title: string
-        }
-        Insert: {
-          badge_icon: string
-          coins_reward?: number
-          created_at?: string
-          description: string
-          id?: string
-          requirement_type: string
-          requirement_value: number
-          title: string
-        }
-        Update: {
-          badge_icon?: string
-          coins_reward?: number
-          created_at?: string
-          description?: string
-          id?: string
-          requirement_type?: string
-          requirement_value?: number
-          title?: string
-        }
-        Relationships: []
-      }
-      daily_missions: {
-        Row: {
-          coins_reward: number
-          created_at: string
-          description: string
-          icon: string
-          id: string
-          mission_type: string
-          target_value: number
-          title: string
-          xp_reward: number
-        }
-        Insert: {
-          coins_reward?: number
-          created_at?: string
-          description: string
-          icon: string
-          id?: string
-          mission_type: string
-          target_value: number
-          title: string
-          xp_reward?: number
-        }
-        Update: {
-          coins_reward?: number
-          created_at?: string
-          description?: string
-          icon?: string
-          id?: string
-          mission_type?: string
-          target_value?: number
-          title?: string
-          xp_reward?: number
-        }
-        Relationships: []
-      }
-      lessons: {
-        Row: {
-          category: string
-          coins_reward: number
-          content: Json
-          created_at: string
-          description: string
-          difficulty: string
-          id: string
-          order_index: number
-          title: string
-        }
-        Insert: {
-          category: string
-          coins_reward?: number
-          content: Json
-          created_at?: string
-          description: string
-          difficulty?: string
-          id?: string
-          order_index: number
-          title: string
-        }
-        Update: {
-          category?: string
-          coins_reward?: number
-          content?: Json
-          created_at?: string
-          description?: string
-          difficulty?: string
-          id?: string
-          order_index?: number
-          title?: string
-        }
-        Relationships: []
-      }
       profiles: {
         Row: {
-          avatar_url: string | null
-          bio: string | null
-          created_at: string
-          current_streak: number
-          display_name: string
-          experience_points: number
-          favorite_color: string | null
+          coins: number | null
+          created_at: string | null
+          display_name: string | null
           id: string
-          last_activity_date: string | null
-          level: number
-          longest_streak: number
-          selected_avatar: string | null
-          total_coins: number
-          updated_at: string
-          user_id: string
+          streak: number | null
+          subscription_plan: string | null
+          updated_at: string | null
         }
         Insert: {
-          avatar_url?: string | null
-          bio?: string | null
-          created_at?: string
-          current_streak?: number
-          display_name: string
-          experience_points?: number
-          favorite_color?: string | null
-          id?: string
-          last_activity_date?: string | null
-          level?: number
-          longest_streak?: number
-          selected_avatar?: string | null
-          total_coins?: number
-          updated_at?: string
-          user_id: string
+          coins?: number | null
+          created_at?: string | null
+          display_name?: string | null
+          id: string
+          streak?: number | null
+          subscription_plan?: string | null
+          updated_at?: string | null
         }
         Update: {
-          avatar_url?: string | null
-          bio?: string | null
-          created_at?: string
-          current_streak?: number
-          display_name?: string
-          experience_points?: number
-          favorite_color?: string | null
+          coins?: number | null
+          created_at?: string | null
+          display_name?: string | null
           id?: string
-          last_activity_date?: string | null
-          level?: number
-          longest_streak?: number
-          selected_avatar?: string | null
-          total_coins?: number
-          updated_at?: string
-          user_id?: string
+          streak?: number | null
+          subscription_plan?: string | null
+          updated_at?: string | null
         }
         Relationships: []
       }
-      rewards_store: {
+      user_roles: {
         Row: {
-          category: string
-          cost_coins: number
-          created_at: string
-          description: string
           id: string
-          image_url: string | null
-          stock: number | null
-          title: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
         }
         Insert: {
-          category: string
-          cost_coins: number
-          created_at?: string
-          description: string
           id?: string
-          image_url?: string | null
-          stock?: number | null
-          title: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
         }
         Update: {
-          category?: string
-          cost_coins?: number
-          created_at?: string
-          description?: string
           id?: string
-          image_url?: string | null
-          stock?: number | null
-          title?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
         }
         Relationships: []
-      }
-      stats_history: {
-        Row: {
-          coins_earned: number
-          date: string
-          id: string
-          lessons_completed: number
-          missions_completed: number
-          user_id: string
-          xp_earned: number
-        }
-        Insert: {
-          coins_earned?: number
-          date?: string
-          id?: string
-          lessons_completed?: number
-          missions_completed?: number
-          user_id: string
-          xp_earned?: number
-        }
-        Update: {
-          coins_earned?: number
-          date?: string
-          id?: string
-          lessons_completed?: number
-          missions_completed?: number
-          user_id?: string
-          xp_earned?: number
-        }
-        Relationships: []
-      }
-      user_achievements: {
-        Row: {
-          achievement_id: string
-          id: string
-          unlocked_at: string
-          user_id: string
-        }
-        Insert: {
-          achievement_id: string
-          id?: string
-          unlocked_at?: string
-          user_id: string
-        }
-        Update: {
-          achievement_id?: string
-          id?: string
-          unlocked_at?: string
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "user_achievements_achievement_id_fkey"
-            columns: ["achievement_id"]
-            isOneToOne: false
-            referencedRelation: "achievements"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      user_daily_missions: {
-        Row: {
-          completed: boolean
-          completed_at: string | null
-          date: string
-          id: string
-          mission_id: string
-          progress: number
-          user_id: string
-        }
-        Insert: {
-          completed?: boolean
-          completed_at?: string | null
-          date?: string
-          id?: string
-          mission_id: string
-          progress?: number
-          user_id: string
-        }
-        Update: {
-          completed?: boolean
-          completed_at?: string | null
-          date?: string
-          id?: string
-          mission_id?: string
-          progress?: number
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "user_daily_missions_mission_id_fkey"
-            columns: ["mission_id"]
-            isOneToOne: false
-            referencedRelation: "daily_missions"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      user_progress: {
-        Row: {
-          completed: boolean
-          completed_at: string | null
-          created_at: string
-          id: string
-          lesson_id: string
-          score: number | null
-          user_id: string
-        }
-        Insert: {
-          completed?: boolean
-          completed_at?: string | null
-          created_at?: string
-          id?: string
-          lesson_id: string
-          score?: number | null
-          user_id: string
-        }
-        Update: {
-          completed?: boolean
-          completed_at?: string | null
-          created_at?: string
-          id?: string
-          lesson_id?: string
-          score?: number | null
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "user_progress_lesson_id_fkey"
-            columns: ["lesson_id"]
-            isOneToOne: false
-            referencedRelation: "lessons"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      user_purchases: {
-        Row: {
-          id: string
-          purchased_at: string
-          redeemed: boolean
-          reward_id: string
-          user_id: string
-        }
-        Insert: {
-          id?: string
-          purchased_at?: string
-          redeemed?: boolean
-          reward_id: string
-          user_id: string
-        }
-        Update: {
-          id?: string
-          purchased_at?: string
-          redeemed?: boolean
-          reward_id?: string
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "user_purchases_reward_id_fkey"
-            columns: ["reward_id"]
-            isOneToOne: false
-            referencedRelation: "rewards_store"
-            referencedColumns: ["id"]
-          },
-        ]
       }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -508,6 +203,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
