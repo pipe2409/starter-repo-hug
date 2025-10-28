@@ -55,8 +55,8 @@ const App = () => {
     const { data } = await supabase
       .from("profiles")
       .select("*")
-      .eq("user_id", userId)
-      .single();
+      .eq("id", userId)
+      .maybeSingle();
     setProfile(data);
   };
 
@@ -98,7 +98,7 @@ const App = () => {
             <div className="min-h-screen flex w-full bg-gradient-to-br from-background via-purple-50/30 to-blue-50/30">
               <AppSidebar
                 onSignOut={handleSignOut}
-                streak={profile?.current_streak || 0}
+                streak={profile?.streak || 0}
               />
 
               <div className="flex-1 flex flex-col">
@@ -110,7 +110,7 @@ const App = () => {
                     <div className="flex items-center gap-2 bg-gradient-to-r from-secondary/20 to-orange-400/20 px-4 py-2 rounded-full">
                       <img src={coinsImage} alt="Coins" className="w-6 h-6" />
                       <span className="font-bold font-fredoka text-lg">
-                        {profile?.total_coins || 0}
+                        {profile?.coins || 0}
                       </span>
                     </div>
                   </div>
@@ -122,19 +122,7 @@ const App = () => {
                     <Route path="/" element={<HomePage user={user} />} />
                     <Route path="/plans" element={<SubscriptionPlans />} />
                     <Route path="/lessons" element={<Lessons user={user} />} />
-                    <Route
-                      path="/missions"
-                      element={<DailyMissions user={user} />}
-                    />
-                    <Route
-                      path="/achievements"
-                      element={<Dashboard user={user} />}
-                    />
                     <Route path="/leaderboard" element={<Leaderboard />} />
-                    <Route
-                      path="/store"
-                      element={<Dashboard user={user} />}
-                    />
                     <Route path="/profile" element={<Profile user={user} />} />
                     <Route path="/admin" element={<Admin user={user} />} />
                     <Route path="*" element={<NotFound />} />
