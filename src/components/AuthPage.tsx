@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import mascotImage from "@/assets/mascot-transparent.png";
+import logoImage from "@/assets/luckcash-logo.png";
 
 export const AuthPage = () => {
   const navigate = useNavigate();
@@ -60,11 +60,11 @@ export const AuthPage = () => {
       <Card className="w-full max-w-md p-8 shadow-lg">
         <div className="text-center mb-8">
           <img
-            src={mascotImage}
-            alt="FinKids Mascot"
-            className="w-24 h-24 mx-auto mb-4 animate-bounce-in"
+            src={logoImage}
+            alt="LuckCash Logo"
+            className="w-32 h-32 mx-auto mb-4 animate-bounce-in object-contain"
           />
-          <h1 className="text-4xl font-bold font-fredoka bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+          <h1 className="text-4xl font-bold font-fredoka bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
             LuckCash
           </h1>
           <p className="text-muted-foreground mt-2 font-poppins">

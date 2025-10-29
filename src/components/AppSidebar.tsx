@@ -23,7 +23,7 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
-import mascotImage from "@/assets/mascot-transparent.png";
+import logoImage from "@/assets/luckcash-logo.png";
 
 const navItems = [
   { title: "Inicio", url: "/", icon: Home },
@@ -57,9 +57,9 @@ export function AppSidebar({ onSignOut, streak }: AppSidebarProps) {
     >
       <div className="p-4 flex items-center justify-center border-b border-sidebar-border">
         <img
-          src={mascotImage}
+          src={logoImage}
           alt="LuckCash"
-          className={`${collapsed ? "w-10 h-10" : "w-16 h-16"} transition-all`}
+          className={`${collapsed ? "w-10 h-10" : "w-16 h-16"} transition-all object-contain`}
         />
         {!collapsed && (
           <div className="ml-3">

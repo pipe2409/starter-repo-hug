@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Check } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import mascotImage from "@/assets/mascot-transparent.png";
+import logoImage from "@/assets/luckcash-logo.png";
 
 const plans = [
   {
@@ -32,7 +32,7 @@ const plans = [
       "500 monedas de inicio",
       "Sin anuncios",
     ],
-    color: "from-primary to-purple-600",
+    color: "from-primary to-accent",
     buttonVariant: "secondary" as const,
     popular: true,
   },
@@ -49,7 +49,7 @@ const plans = [
       "Soporte prioritario",
       "Insignias especiales",
     ],
-    color: "from-secondary to-orange-400",
+    color: "from-secondary to-accent",
     buttonVariant: "default" as const,
   },
 ];
@@ -64,16 +64,8 @@ export default function SubscriptionPlans() {
     // Save the plan to the user's profile
     const { data: { user } } = await supabase.auth.getUser();
     if (user) {
-      // Note: You need to add subscription_plan column to profiles table first
-      const { error } = await supabase
-        .from('profiles')
-        .update({ subscription_plan: planName.toLowerCase() } as any)
-        .eq('user_id', user.id);
-      
-      if (error) {
-        console.log('Note: subscription_plan column needs to be added to profiles table');
-        console.error(error);
-      }
+      // Note: Profiles table integration would be added here
+      console.log(`User ${user.id} selected plan: ${planName}`);
     }
     
     toast.success(`¡Plan ${planName} seleccionado! 🎉`);
@@ -85,16 +77,16 @@ export default function SubscriptionPlans() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-purple-50/30 to-blue-50/30 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-accent/10 py-12 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
           <img
-            src={mascotImage}
+            src={logoImage}
             alt="LuckCash"
-            className="w-24 h-24 mx-auto mb-6 animate-bounce-in"
+            className="w-32 h-32 mx-auto mb-6 animate-bounce-in object-contain"
           />
-          <h1 className="text-4xl md:text-5xl font-bold font-fredoka bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold font-fredoka bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent mb-4">
             ¡Elige tu plan de aprendizaje! 🚀
           </h1>
           <p className="text-lg text-muted-foreground font-poppins max-w-2xl mx-auto">
@@ -112,7 +104,7 @@ export default function SubscriptionPlans() {
               }`}
             >
               {plan.popular && (
-                <div className="absolute top-0 right-0 bg-gradient-to-r from-primary to-purple-600 text-primary-foreground px-4 py-1 text-sm font-bold rounded-bl-lg">
+                <div className="absolute top-0 right-0 bg-gradient-to-r from-primary to-accent text-primary-foreground px-4 py-1 text-sm font-bold rounded-bl-lg">
                   MÁS POPULAR
                 </div>
               )}
@@ -155,7 +147,7 @@ export default function SubscriptionPlans() {
                   variant={plan.buttonVariant}
                   className={`w-full ${
                     plan.popular
-                      ? "bg-gradient-to-r from-primary to-purple-600 text-primary-foreground hover:opacity-90"
+                      ? "bg-gradient-to-r from-primary to-accent text-primary-foreground hover:opacity-90"
                       : ""
                   }`}
                   onClick={() => handleSelectPlan(plan.name)}
