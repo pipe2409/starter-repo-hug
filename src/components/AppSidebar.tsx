@@ -55,15 +55,15 @@ export function AppSidebar({ onSignOut, streak }: AppSidebarProps) {
       className={`${collapsed ? "w-16" : "w-64"} transition-all font-poppins`}
       collapsible="icon"
     >
-      <div className="p-4 flex items-center justify-center border-b border-sidebar-border">
+      <div className="p-6 flex flex-col items-center justify-center border-b border-sidebar-border">
         <img
           src={logoImage}
           alt="LuckCash"
-          className={`${collapsed ? "w-10 h-10" : "w-16 h-16"} transition-all object-contain`}
+          className={`${collapsed ? "w-12 h-12" : "w-32 h-32"} transition-all object-cover scale-125`}
         />
         {!collapsed && (
-          <div className="ml-3">
-            <h1 className="text-2xl font-bold font-fredoka bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+          <div className="mt-2 text-center">
+            <h1 className="text-2xl font-bold font-fredoka bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
               LuckCash
             </h1>
           </div>
