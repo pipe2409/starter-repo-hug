@@ -58,13 +58,11 @@ export function AppSidebar({ onSignOut, streak }: AppSidebarProps) {
       <div className="p-6 flex flex-col items-center justify-center border-b border-sidebar-border">
         <img
           src={logoImage}
-          alt="LuckCash"
           className={`${collapsed ? "w-12 h-12" : "w-32 h-32"} transition-all object-cover scale-125`}
         />
         {!collapsed && (
           <div className="mt-2 text-center">
             <h1 className="text-2xl font-bold font-fredoka bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-              LuckCash
             </h1>
           </div>
         )}

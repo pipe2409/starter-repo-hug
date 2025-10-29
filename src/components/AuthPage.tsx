@@ -64,9 +64,7 @@ export const AuthPage = () => {
             alt="LuckCash Logo"
             className="w-32 h-32 mx-auto mb-4 animate-bounce-in object-contain"
           />
-          <h1 className="text-4xl font-bold font-fredoka bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-            LuckCash
-          </h1>
+        
           <p className="text-muted-foreground mt-2 font-poppins">
             ¡Aprende sobre dinero jugando y gana recompensas! 💰✨
           </p>
