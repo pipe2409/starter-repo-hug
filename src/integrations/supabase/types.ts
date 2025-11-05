@@ -14,6 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
+      lessons: {
+        Row: {
+          category: string
+          content: string
+          created_at: string
+          description: string
+          difficulty: string
+          duration_minutes: number
+          id: string
+          order_index: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category: string
+          content: string
+          created_at?: string
+          description: string
+          difficulty?: string
+          duration_minutes?: number
+          id?: string
+          order_index?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          content?: string
+          created_at?: string
+          description?: string
+          difficulty?: string
+          duration_minutes?: number
+          id?: string
+          order_index?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           coins: number | null
@@ -43,6 +82,47 @@ export type Database = {
           updated_at?: string | null
         }
         Relationships: []
+      }
+      user_lesson_progress: {
+        Row: {
+          completed: boolean
+          created_at: string
+          id: string
+          last_accessed: string
+          lesson_id: string
+          progress: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          completed?: boolean
+          created_at?: string
+          id?: string
+          last_accessed?: string
+          lesson_id: string
+          progress?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          completed?: boolean
+          created_at?: string
+          id?: string
+          last_accessed?: string
+          lesson_id?: string
+          progress?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_lesson_progress_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "lessons"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_roles: {
         Row: {
