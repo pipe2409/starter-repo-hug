@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { User } from "@supabase/supabase-js";
@@ -119,7 +119,14 @@ const App = () => {
                 {/* Main Content */}
                 <main className="flex-1 overflow-auto">
                   <Routes>
-                    <Route path="/" element={<HomePage user={user} />} />
+                    <Route 
+                      path="/" 
+                      element={
+                        !profile?.subscription_plan || profile?.subscription_plan === 'gratuito' 
+                          ? <Navigate to="/plans" replace />
+                          : <HomePage user={user} profile={profile} />
+                      } 
+                    />
                     <Route path="/plans" element={<SubscriptionPlans />} />
                     <Route path="/lessons" element={<Lessons user={user} />} />
                     <Route path="/leaderboard" element={<Leaderboard />} />
