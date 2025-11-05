@@ -61,19 +61,35 @@ export default function SubscriptionPlans() {
   const handleSelectPlan = async (planName: string) => {
     setSelectedPlan(planName);
     
-    // Save the plan to the user's profile
-    const { data: { user } } = await supabase.auth.getUser();
-    if (user) {
-      // Note: Profiles table integration would be added here
-      console.log(`User ${user.id} selected plan: ${planName}`);
+    try {
+      // Get current user
+      const { data: { user } } = await supabase.auth.getUser();
+      
+      if (user) {
+        // Update the subscription plan in the profile
+        const { error } = await supabase
+          .from('profiles')
+          .update({ subscription_plan: planName.toLowerCase() })
+          .eq('id', user.id);
+        
+        if (error) {
+          console.error('Error updating plan:', error);
+          toast.error('Error al actualizar el plan');
+          return;
+        }
+        
+        toast.success(`¡Plan ${planName} seleccionado! 🎉`);
+        
+        // Redirect to dashboard
+        setTimeout(() => {
+          navigate('/');
+        }, 1500);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      toast.error('Error al seleccionar el plan');
+      setSelectedPlan(null);
     }
-    
-    toast.success(`¡Plan ${planName} seleccionado! 🎉`);
-    
-    // Redirect after a short delay
-    setTimeout(() => {
-      navigate('/');
-    }, 1500);
   };
 
   return (

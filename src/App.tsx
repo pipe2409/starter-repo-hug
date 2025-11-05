@@ -56,7 +56,7 @@ const App = () => {
       .from("profiles")
       .select("*")
       .eq("id", userId)
-      .maybeSingle();
+      .single();
     setProfile(data);
   };
 
@@ -122,9 +122,9 @@ const App = () => {
                     <Route 
                       path="/" 
                       element={
-                        !profile?.subscription_plan || profile?.subscription_plan === 'gratuito' 
-                          ? <Navigate to="/plans" replace />
-                          : <HomePage user={user} profile={profile} />
+                        profile?.subscription_plan && profile?.subscription_plan !== 'gratuito'
+                          ? <HomePage user={user} profile={profile} />
+                          : <Navigate to="/plans" replace />
                       } 
                     />
                     <Route path="/plans" element={<SubscriptionPlans />} />
