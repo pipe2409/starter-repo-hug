@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { BookOpen, Clock, CheckCircle2, PlayCircle } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import { useNavigate } from "react-router-dom";
 
 interface Lesson {
   id: string;
@@ -30,6 +31,7 @@ interface UserProgress {
 
 export default function Lessons({ user }: { user: User }) {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const { data: lessons, isLoading: lessonsLoading } = useQuery({
     queryKey: ["lessons"],
@@ -185,8 +187,7 @@ export default function Lessons({ user }: { user: User }) {
                 </div>
 
                 <Button
-                  onClick={() => startLessonMutation.mutate(lesson.id)}
-                  disabled={startLessonMutation.isPending}
+                  onClick={() => navigate(`/lessons/${lesson.id}`)}
                   className="w-full"
                   variant={completed ? "secondary" : "default"}
                 >
