@@ -130,6 +130,7 @@ const App = () => {
                     <Route path="/plans" element={<SubscriptionPlans />} />
                     <Route path="/lessons" element={<Lessons user={user} />} />
                     <Route path="/leaderboard" element={<Leaderboard />} />
+                    <Route path="/missions" element={<DailyMissions user={user} />} />
                     <Route path="/profile" element={<Profile user={user} />} />
                     <Route path="/admin" element={<Admin user={user} />} />
                     <Route path="*" element={<NotFound />} />
